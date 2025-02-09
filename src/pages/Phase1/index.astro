@@ -1,0 +1,162 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>地震情報</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');
+      /* 1remが横幅が1600pxの端末で1pxに対応する。 */
+      html {
+          font-size: calc(100vw / 1600);
+      }
+
+      * {
+          box-sizing: border-box;
+      }
+
+      #main {
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;	
+          border: 0;
+      }
+
+      #content-in {
+          width: 100%;
+      }
+
+      #townBoard_content{
+          font-family: 'Noto Sans', sans-serif;
+          font-size: 40rem;
+          font-weight: 700;
+          text-align: center;
+          color: rgba(30, 30, 30, 1);
+          line-height: 1.5;
+
+          filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+          border: 1px solid rgba(0, 0, 0, 1);
+
+          box-sizing: border-box;
+          width: 100%;
+          height: 100vh;
+      }
+
+      #phase1 {
+          text-align: center;
+          font-family: 'Noto Sans', sans-serif;
+      }
+
+      .hidden {
+          display: none;
+      }
+
+      .entry-title {
+          display: none;
+      }
+
+      .content {
+          margin: 0;
+      }
+
+      .container-top {
+          display: none;
+      }
+
+      .logo-header {
+          display: none;
+      }
+
+      .site-name-text {
+          display: none;
+      }
+
+      .content-top {
+          margin: 0;
+      }
+
+      .scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+      .scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+
+      .entry-header {
+          display:none;
+      }
+
+      .entry-content {
+          margin: 0;
+      }
+
+      .footer {
+          display: none;
+      }
+
+      .article {
+          margin: 0;
+      }
+
+      body {
+          margin: 0;
+          height: 100vh;
+      }
+
+      main {
+          height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="townBoard_content">
+      <div id="phase1" style="height: 100%">
+        <div style="height: 20%; background-color: rgba(0,0,0,1); display: flex; justify-content: space-evenly;">
+          <img src="http://yxpartners.co.jp/wp-content/uploads/2024/12/attention-icon0101.png" alt = "" style="height: 100%; width: auto;">
+          <div style="font-size: 128rem; font-weight: 800; color: white;">
+            地震情報
+          </div>
+        </div>
+        <div style="height: 80%; background-color: red; padding: 2% 5%;">
+          <div style="margin-top: 2%; font-size: 128rem; font-weight: 600; color: white;">
+            強い揺れに警戒
+          </div>
+          <div style="margin-top: 3%; font-size: 80rem; font-weight: 600; color: white;">
+            頭を守り、建物から離れてください
+          </div>
+          <div id="quake_time" style="margin-top: 3%; height: 20%; font-size: 96rem; font-weight: 600;background-color: yellow; display: flex; justify-content: center; align-items: center;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const default_quake_time = 10.03;
+      const MILLISECOND = 0.001;
+
+      function quake_count_down() {
+        let quake_time = default_quake_time;
+        const quake_time_element = document.getElementById('quake_time');
+
+        let first_interval_id = setInterval(function() {
+          quake_time_element.innerText = quake_time.toFixed(2);
+          quake_time -= 10 * MILLISECOND;
+          if (quake_time < 0) {
+              clearInterval(first_interval_id);
+          }
+        }, 10);
+      }
+
+      function phase1() {
+        quake_count_down();
+      }
+
+      phase1();
+    </script>
+  </body>
+</html>

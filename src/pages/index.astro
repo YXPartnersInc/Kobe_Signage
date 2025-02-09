@@ -1,11 +1,27 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import '@/styles/global.css'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const phases = [
+  { name: 'Phase1', route: '/Phase1' },
+  { name: 'Phase2_1', route: '/Phase2_1' },
+  { name: 'Phase2_2', route: '/Phase2_2' },
+  { name: 'Phase3', route: '/Phase3' },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Dashboard">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">Project Dashboard</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {phases.map((phase) => (
+        <a
+          href={phase.route}
+          class="block p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 transition-colors duration-200"
+        >
+          <h2 class="text-xl font-semibold text-center">{phase.name}</h2>
+        </a>
+      ))}
+    </div>
+  </main>
 </Layout>
