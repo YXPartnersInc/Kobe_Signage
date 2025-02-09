@@ -1,0 +1,75 @@
+<div id="townBoard_content">
+    <div id="phase3">
+        <div>
+            <div class="large_box" style="height: 12vh;">
+                <div class="left_box">
+                    <div class="simple_box head_box" style="font-size: 40rem; height: 100%;">
+                        Horai Smart Town Board for 防災
+                    </div>
+                </div>
+                <div class="right_box" style="display: flex; justify-content:space-between;">
+                    <div class="simple_box head_box" id="current_date" style="width: 60%; font-size: 48rem;">
+                        11/20
+                    </div>
+                    <div id="weather" class="day simple_box head_box" style="display: flex; width: 16%; margin-left: auto; justify-content: space-evenly; position: relative; overflow: visible;">
+                        <text style="position: absolute; top: 0; left: 0; right: 0; text-align: center; font-size: 18rem;">現在の天気</text>
+                        <figure class="center_figure" style="width: 50%; height: 60%; margin: 0;">
+                            <img id="current_weather_img" src='http://yxpartners.co.jp/wp-content/uploads/2024/11/rainy.png' alt="" class="full_img"/>
+                        </figure>
+                    </div>
+                    <div id="weather" class="night simple_box head_box" style="display: flex; width: 16%; margin-left: auto; justify-content: space-evenly;">
+                        <text style="position: absolute; top: 0%; left: 0; right: 0; text-align: center; font-size: 18rem; color: white;">今夜の天気</text>
+                        <figure class="center_figure" style="width: 50%; height: 60%; margin: 0;">
+                            <img id="next_weather_img" src="http://yxpartners.co.jp/wp-content/uploads/2024/11/rainy.png" alt="" class="full_img"/>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="large_box" style="height: 81.5vh; margin-top: 2.5vh; display: flex;">
+                <div class="left_box" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="simple_box" style="height: 62%; flex-direction: column;">
+                        <div class="box_title3" style="width: 28%; height: 7%;">
+                            災害情報
+                        </div>
+                        <div style="height:93%; border-radius: 1vw; display:  flex; justify-content: center; align-items: center;">
+                            <video src="http://yxpartners.co.jp/wp-content/uploads/2024/12/main_1.mp4" loop autoplay muted controls style="height: 90%; max-width: 100%; object-fit: contain; border-radius: 19px; margin: auto;"></video>
+                        </div>
+                    </div>
+                    <div class="simple_box" style="height: 33%;">
+                        <div style="height: 15%;">
+                            <div class="box_title3" style="width: 40%;">
+                                地域の声
+                            </div>
+                        </div>
+                        <div style="padding: 1% 2%; font-size: 24rem; text-align: left;">
+                            ・○○避難所で食料が足りないので分けて欲しい <br>
+                            ・××で人が倒れているので助けが欲しい <br>
+                            ・△△道は崩れていて危険！！ <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="right_box" style="display: flex; flex-direction: column; justify-content:  space-between;">
+                    <div class="simple_box" style="height: 50%; margin-left: auto; width: 100%;">
+                        <div style="display: flex; height: 7%; width: 100%;">
+                            <script src="https://maps.google.com/maps/api/js?key=AIzaSyAPtMOIDag9gFHRFa6RmyZILfWjqzsMvZc&language=ja"></script>
+                            <div class="box_title3" style="width: 28%;">
+                                地図
+                            </div>
+                            <div style="margin-right: 3%; margin-left: auto; color: rgba(232, 87, 54, 1); font-family: 'Noto Sans', sans-serif; font-weight: 500; font-size: 15rem; display: flex; align-items: center;">
+                            </div>
+                        </div>
+                        <div style="height: 88%; margin-top: 1%; padding: 0 3%; border-radius: 1vw; overflow: hidden;">
+                            <div id="shelter_map" style="height:100%; border-radius: 1vw;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="simple_box" style=" height: 45%; margin-top: auto;">
+                        <div class="box_title3" style="width: 28%; height:8%">
+                            避難所情報
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
