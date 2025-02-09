@@ -1,27 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '@/styles/global.css'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 const phases = [
-  { name: 'Phase1', route: '/Phase1' },
-  { name: 'Phase2_1', route: '/Phase2_1' },
-  { name: 'Phase2_2', route: '/Phase2_2' },
-  { name: 'Phase3', route: '/Phase3' },
+  { name: 'Phase1', route: '/Phase1', description: 'Initial planning and setup' },
+  { name: 'Phase2_1', route: '/Phase2_1', description: 'Development of core features' },
+  { name: 'Phase2_2', route: '/Phase2_2', description: 'Implementation of advanced features' },
+  { name: 'Phase3', route: '/Phase3', description: 'Testing and deployment' },
 ];
 ---
 
 <Layout title="Dashboard">
   <main class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6 text-center">Project Dashboard</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <h1 class="text-4xl font-bold mb-8 text-center text-primary">Project Dashboard</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {phases.map((phase) => (
-        <a
-          href={phase.route}
-          class="block p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 transition-colors duration-200"
-        >
-          <h2 class="text-xl font-semibold text-center">{phase.name}</h2>
+        <a href={phase.route} class="block group">
+          <Card className="h-full transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-xl">
+            <CardHeader>
+              <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">{phase.name}</CardTitle>
+              <CardDescription>{phase.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p class="text-sm text-muted-foreground group-hover:text-primary transition-colors duration-300">Click to view details</p>
+            </CardContent>
+          </Card>
         </a>
       ))}
     </div>
   </main>
 </Layout>
+
+<script>
+  // Hydrate shadcn/ui components
+  import { Card } from '../components/ui/card'
+</script>
+
