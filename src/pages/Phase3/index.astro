@@ -1,0 +1,246 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>index.astro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts (imported at the top of the CSS below is also fine) -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');
+
+      /* 1remが横幅が1600pxの端末で1pxに対応する。 */
+      html {
+          font-size: calc(100vw / 1600);
+      }
+
+      * {
+          box-sizing: border-box;
+      }
+
+      #main {
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;	
+          border: 0;
+      }
+
+      #content-in {
+          width: 100%;
+      }
+
+      #townBoard_content{
+          font-family: 'Noto Sans', sans-serif;
+          font-size: 40rem;
+          font-weight: 700;
+          text-align: center;
+          color: rgba(30, 30, 30, 1);
+          line-height: 1.5;
+          filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+          border: 1px solid rgba(0, 0, 0, 1);
+          box-sizing: border-box;
+          width: 100%;
+          height: 100vh;
+      }
+
+      #phase3 {
+          height: 100%;
+          padding: 2vh 2vw;
+          background-image: url("http://yxpartners.co.jp/wp-content/uploads/2024/12/8e1b944f4389bdaab6f11d5bc83190c8.jpg");
+      }
+
+      .large_box {
+          display: flex;
+      }
+
+      .left_box {
+          width: 53%;
+      }
+
+      .right_box {
+          width: 44%;
+          margin-left: auto;
+      }
+
+      .full_img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+      }
+
+      .center_figure {
+          display: flex;
+          justify-content: center;
+      }
+
+      .simple_box {
+          background-color: rgba(255, 255, 255, 0.8);
+          filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+          border-radius: 1vw;
+      }
+
+      .head_box {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .box_title, .box_title3 {
+          background-color: rgba(232, 87, 54, 1);
+          margin-left: 0;
+          margin-bottom: auto;
+          height: 3.44vh;
+          color: rgba(255, 255, 255, 1);
+          font-size: 16rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .box_title3 {
+          background-color: magenta;
+      }
+
+      .hidden {
+          display: none;
+      }
+
+      /* 昼の背景 */
+      .day {
+          background: linear-gradient(to bottom, #87CEEB, #FFFFFF);
+      }
+
+      /* 夜の背景 */
+      .night {
+          background: linear-gradient(to bottom, #2C3E50, #000000);
+      }
+
+      .entry-title,
+      .container-top,
+      .logo-header,
+      .site-name-text,
+      .entry-header,
+      .footer {
+          display: none;
+      }
+
+      .content,
+      .content-top,
+      .entry-content,
+      .article {
+          margin: 0;
+      }
+
+      .scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+      .scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+
+      body {
+          margin: 0;
+          height: 100vh;
+      }
+
+      main {
+          height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="content-in">
+        <!-- 見出し部分サンプル -->
+        <div id="townBoard_content">
+          ここに何かテキストが入ります
+        </div>
+
+        <!-- 第3フェーズ部分サンプル -->
+        <div id="phase3" class="day">
+          <div class="large_box">
+            <div class="left_box">
+              <!-- サンプル画像エリア -->
+              <div class="center_figure">
+                <figure>
+                  <img class="full_img" src="https://placekitten.com/400/300" alt="サンプル画像" />
+                </figure>
+              </div>
+            </div>
+            <div class="right_box">
+              <div class="simple_box">
+                <div class="head_box">
+                  <div class="box_title">BOXタイトル</div>
+                </div>
+                <p>ここに何かテキストを入れる</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Map を表示する要素 -->
+      <div id="shelter_map" style="width:100%; height:100%;"></div>
+
+      <!-- 現在時刻を表示する要素 -->
+      <div id="current_date" 
+           style="position:absolute; top:10px; left:10px; padding:8px; background:#fff; font-size:16px; border:1px solid #ccc;">
+      </div>
+    </div>
+
+    <!-- jQueryが必要なら読み込み -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Google Maps API (keyを差し替えてください) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+
+    <script>
+      let map;
+      let directionsService;
+      let directionsRenderer;
+      const start_latitude = 34.68216;
+      const start_longitude = 135.18851;
+
+      function init_map(latitude, longitude) {
+        let MyLatLng = new google.maps.LatLng(latitude, longitude);
+        var Options = {
+          zoom: 15,             // 地図の縮尺値
+          center: MyLatLng,     // 地図の中心座標
+          mapTypeId: 'roadmap'  // 地図の種類
+        };
+        map = new google.maps.Map(document.getElementById('shelter_map'), Options);
+      };
+
+      function update_date(){
+        let date = new Date();
+        let dates = 
+          (date.getMonth() + 1) + "/" +
+           date.getDate()       + " " +
+           date.getHours()      + ":" +
+           ("0" + date.getMinutes()).slice(-2);
+
+        // jQueryで表示部分を更新
+        $("#current_date").html(dates);
+      }
+
+      const period_time = 30000; // 30秒おきに日時を更新
+
+      function phase3() {
+        init_map(start_latitude, start_longitude);
+        update_date();
+        setInterval(function() {
+          update_date();
+        }, period_time);
+      }
+
+      // 実行
+      phase3();
+    </script>
+  </body>
+</html>
