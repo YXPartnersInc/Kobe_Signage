@@ -1,6 +1,8 @@
 ---
-// Astro の Frontmatter が必要であればここに記述します。
-// 特になければ空のままで OK です。
+/**
+ * 特にフロントマターは必要ありませんので空のままにしてあります。
+ * 必要に応じてここに変数や props を定義してください。
+ */
 ---
 
 <!DOCTYPE html>
@@ -19,8 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap"
     />
 
-    <!-- グローバルCSSとしてまとめる場合は is:global をつけると他コンポーネントにも影響します。 
-         このページだけに適用したいなら is:global は外してください。 -->
+    <!-- このページのみで適用したい場合は is:global を外す -->
     <style is:global>
       /* CSSここから */
       html {
