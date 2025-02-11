@@ -77,7 +77,7 @@ export default function TsunamiAlert() {
             <div className="w-full md:w-1/2 h-1/2 md:h-full">
               {/* 画像を親要素のサイズ一杯に表示 */}
               <img
-                src="/path/to/your-image.jpg"
+                src="/combined_map3.png"
                 alt="tsunami map"
                 className="w-full h-full object-cover"
               />
