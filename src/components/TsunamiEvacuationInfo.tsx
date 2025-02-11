@@ -19,7 +19,7 @@ export default function TsunamiAlert() {
   useEffect(() => {
     const timer = setInterval(() => {
       setTsunamiTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0))
-    }, 60000)
+    }, 1000)
     return () => clearInterval(timer)
   }, [])
 
