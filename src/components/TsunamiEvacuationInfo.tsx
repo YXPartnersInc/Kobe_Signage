@@ -75,7 +75,12 @@ export default function TsunamiAlert() {
           <div className="bg-blue-800 text-white p-2 flex-grow flex flex-col md:flex-row gap-2">
             {/* 左側: マップ */}
             <div className="w-full md:w-1/2 h-1/2 md:h-full">
-              <div id="tsunami_map" className="w-full h-full rounded-lg overflow-hidden"></div>
+              {/* 画像を親要素のサイズ一杯に表示 */}
+              <img
+                src="/path/to/your-image.jpg"
+                alt="tsunami map"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* 右側: 避難所カード & 下部情報 */}
