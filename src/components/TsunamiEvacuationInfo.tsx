@@ -19,7 +19,7 @@ export default function TsunamiAlert() {
   useEffect(() => {
     const timer = setInterval(() => {
       setTsunamiTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0))
-    }, 60000)
+    }, 1000)
     return () => clearInterval(timer)
   }, [])
 
@@ -97,25 +97,29 @@ export default function TsunamiAlert() {
                       <p className="text-lg md:text-xl mb-4">Kobe Citizen Welfare Exchange Center</p>
                       <div className="flex items-start mb-4">
                         <MapPin className="mr-2 mt-1 flex-shrink-0" size={24} />
-                        <p className="text-lg md:text-xl">神戸市中央区磯上通3丁目1-32</p>
+                        <p className="text-lg md:text-xl">
+                          神戸市中央区磯上通3丁目1-32<br />
+                          3-1-32 Isogami-dori, Chuo-ku, Kobe
+                        </p>
                       </div>
                     </div>
                     <div className="bg-gray-700 p-4 rounded-lg">
                       <p className="text-xl md:text-2xl font-medium text-center">
-                        ここから <span className="text-yellow-300">870m</span> /{" "}
-                        <span className="text-yellow-300">30分</span>
+                        From here <span className="text-yellow-300">870m</span> /{" "}
+                        <span className="text-yellow-300">30 minutes</span>
                       </p>
                     </div>
                   </CardContent>
                 </Card>
               </div>
 
-              {/* 下部情報エリア */}
+              {/* Information Area */}
               <div className="p-4 mt-2 flex flex-col md:flex-row justify-between items-center gap-4 bg-yellow-300 text-black rounded-lg">
-                <p className="text-xl md:text-2xl font-bold">予想高さ: 5m</p>
-                <p className="text-xl md:text-2xl font-bold">予想到達まで: {tsunamiTime}分</p>
-                <p className="text-sm md:text-base">人流データに基づいてルートを計算しています</p>
-              </div>
+                <p className="text-xl md:text-2xl font-bold">Estimated Height<br />: 5m</p>
+                <p className="text-xl md:text-2xl font-bold">
+                  Estimated Time to Arrival<br />: {tsunamiTime} {tsunamiTime === 1 ? 'minute' : 'minutes'}
+                </p>
+                <p className="text-sm md:text-base">Route calculated based on human flow data</p>
             </div>
           </div>
         </CardContent>
