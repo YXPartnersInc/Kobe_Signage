@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react"
 import { AlertTriangle, MapPin } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-const GOOGLE_MAPS_API_KEY = import.meta.env.GOOGLE_MAPS_API_KEY;
-
 declare global {
   interface Window {
     initMap?: () => void
@@ -26,7 +23,6 @@ export default function TsunamiAlert() {
   // Google Maps 読み込み
   useEffect(() => {
     const script = document.createElement("script")
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&callback=initMap`
     script.async = true
     document.body.appendChild(script)
 
@@ -75,7 +71,6 @@ export default function TsunamiAlert() {
           <div className="bg-blue-800 text-white p-2 flex-grow flex flex-col md:flex-row gap-2">
             {/* 左側: マップ */}
             <div className="w-full md:w-1/2 h-1/2 md:h-full">
-              {/* 画像を親要素のサイズ一杯に表示 */}
               <img
                 src="/combined_map3.png"
                 alt="tsunami map"
@@ -89,7 +84,9 @@ export default function TsunamiAlert() {
               <div className="p-4 w-full flex-1">
                 <Card className="bg-gray-800 text-white h-full shadow-lg flex flex-col">
                   <CardHeader className="border-b border-gray-600 p-6">
-                    <CardTitle className="text-3xl md:text-4xl font-semibold">避難所 / Evacuation Center</CardTitle>
+                    <CardTitle className="text-3xl md:text-4xl font-semibold text-center">
+                      避難所 / Evacuation Center
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 text-left flex flex-col justify-between flex-grow">
                     <div>
@@ -115,11 +112,12 @@ export default function TsunamiAlert() {
 
               {/* Information Area */}
               <div className="p-4 mt-2 flex flex-col md:flex-row justify-between items-center gap-4 bg-yellow-300 text-black rounded-lg">
-                <p className="text-xl md:text-2xl font-bold">Estimated Height<br />: 5m</p>
-                <p className="text-xl md:text-2xl font-bold">
+                <p className="text-xl md:text-2xl font-bold text-center">Estimated Height<br />: 5m</p>
+                <p className="text-xl md:text-2xl font-bold text-center">
                   Estimated Time to Arrival<br />: {tsunamiTime} {tsunamiTime === 1 ? 'minute' : 'minutes'}
                 </p>
-                <p className="text-sm md:text-base">Route calculated based on human flow data</p>
+                <p className="text-sm md:text-base text-center">Route calculated based on human flow data</p>
+              </div>
             </div>
           </div>
         </CardContent>
@@ -127,4 +125,3 @@ export default function TsunamiAlert() {
     </div>
   )
 }
-
