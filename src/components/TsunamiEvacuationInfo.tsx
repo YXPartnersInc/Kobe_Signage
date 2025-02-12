@@ -89,15 +89,15 @@ export default function TsunamiAlert() {
               <div className="p-4 w-full flex-1">
                 <Card className="bg-gray-800 text-white h-full shadow-lg flex flex-col">
                   <CardHeader className="border-b border-gray-600 p-6">
-                    <CardTitle className="text-3xl md:text-4xl font-semibold">避難所 / Evacuation Center</CardTitle>
+                    <CardTitle className="text-5xl md:text-6xl font-semibold">避難所 / Evacuation Center</CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 text-left flex flex-col justify-between flex-grow">
                     <div>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-2">こうべ市民福祉交流センター</h3>
-                      <p className="text-lg md:text-xl mb-4">Kobe Citizen Welfare Exchange Center</p>
+                      <h3 className="text-4xl md:text-5xl font-bold mb-2"><br />こうべ市民福祉交流センター</h3>
+                      <p className="text-2xl md:text-3xl mb-4">Kobe Citizen Welfare Exchange Center</p>
                       <div className="flex items-start mb-4">
                         <MapPin className="mr-2 mt-1 flex-shrink-0" size={24} />
-                        <p className="text-lg md:text-xl">
+                        <p className="text-2xl md:text-3xl">
                           神戸市中央区磯上通3丁目1-32<br />
                           3-1-32 Isogami-dori, Chuo-ku, Kobe
                         </p>
@@ -116,10 +116,9 @@ export default function TsunamiAlert() {
               {/* Information Area */}
               <div className="p-4 mt-2 flex flex-col md:flex-row justify-between items-center gap-4 bg-yellow-300 text-black rounded-lg">
                 <p className="text-xl md:text-2xl font-bold">Estimated Height<br />: 5m</p>
-                <p className="text-xl md:text-2xl font-bold">
-                  Estimated Time to Arrival<br />: {tsunamiTime} {tsunamiTime === 1 ? 'minute' : 'minutes'}
-                </p>
+                <p className="text-xl md:text-2xl font-bold">Estimated Time to Arrival<br />: {tsunamiTime} minutes</p>
                 <p className="text-sm md:text-base">Route calculated based on human flow data</p>
+              </div>
             </div>
           </div>
         </CardContent>
