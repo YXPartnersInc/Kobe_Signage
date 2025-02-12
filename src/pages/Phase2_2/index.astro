@@ -1,16 +1,25 @@
 ---
+import TsunamiEvacuationInfo from "@/components/TsunamiEvacuationInfo";
 import "@/styles/global.css";
-import TsunamiEvacuationInfo from "@/components/TsunamiEvacuationInfo.tsx";
 ---
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tsunami Evacuation Info</title>
   </head>
   <body>
-    <!-- ここでクライアントマウント -->
-    <TsunamiEvacuationInfo client:only="react" />
+    <TsunamiEvacuationInfo
+      client:only="react"
+      shelterName="Kobe Citizen Welfare Exchange Center"
+      shelterAddress="3-1-32 Isogami-dori, Chuo-ku, Kobe, Japan"
+      distance={870}
+      estimatedTimeToShelter={30}
+      estimatedHeight={5}
+      estimatedTimeToArrival={18}
+       imageSrc="/combined_map1.png"
+    />
   </body>
 </html>
