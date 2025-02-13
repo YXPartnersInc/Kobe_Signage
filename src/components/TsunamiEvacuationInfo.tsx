@@ -63,7 +63,7 @@ export default function TsunamiEvacuationInfo({
               <img
                 src={imageSrc}
                 alt="Tsunami map"
-                className="w-full h-full object-cover max-w-full max-h-full"
+                className="w-full h-full object-contain"
               />
             </div>
 
