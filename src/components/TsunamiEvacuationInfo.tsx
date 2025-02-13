@@ -31,10 +31,16 @@ export default function TsunamiEvacuationInfo({
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTsunamiTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0))
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [])
+      setTsunamiTime((prevTime) => {
+        if (prevTime > 0) {
+          return prevTime - 1;
+        } else {
+          return estimatedTimeToArrival; // タイマーをリセットしてループさせる
+        }
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [estimatedTimeToArrival]);
 
   return (
     <div className="w-full h-screen bg-gray-100 p-2">
@@ -57,7 +63,7 @@ export default function TsunamiEvacuationInfo({
               <img
                 src={imageSrc}
                 alt="Tsunami map"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
 
